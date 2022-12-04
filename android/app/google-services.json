@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "509772241177",
+    "project_id": "studiousapp-b71d7",
+    "storage_bucket": "studiousapp-b71d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509772241177:android:9ef64aa7bb1ad930ea4d88",
+        "android_client_info": {
+          "package_name": "com.example.studious_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509772241177-u4qdej026grkvk22flcso44r05lm2p06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studious_app",
+            "certificate_hash": "15021e420a5f34cf983ce599fd3d06a729b81d39"
+          }
+        },
+        {
+          "client_id": "509772241177-b01234uarpl61lpj2ldlf888d1oqv3tv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbLJyWbmII7HUUUSPUPXwkVzqdMQyQu48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509772241177-b01234uarpl61lpj2ldlf888d1oqv3tv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
