@@ -20,7 +20,7 @@ class DataUploader extends GetxController {
     final fireStore = FirebaseFirestore.instance;
     final manifestContent = await DefaultAssetBundle.of(Get.context!)
         .loadString("AssetManifest.json");
-    final Map<String, dynamic> manifestMap = jsonDecode(manifestContent);
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
 
     //load json file and print path
     final paperInAssets = manifestMap.keys

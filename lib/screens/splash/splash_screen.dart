@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:studious_app/configs/themes/app_color.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -14,7 +12,7 @@ class SplashScreen extends StatelessWidget {
         decoration: BoxDecoration(gradient: mainGradient()),
         child: Image.asset(
           "assets/images/app_splash_logo.png",
-          width: 200, 
+          width: 200,
           height: 200,
         ),
       ),

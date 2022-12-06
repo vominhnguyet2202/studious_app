@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:studious_app/configs/themes/app_color.dart';
 import 'package:studious_app/configs/themes/ui_paraments.dart';
 
 TextStyle cartTitles(context) => TextStyle(
@@ -13,3 +14,5 @@ TextStyle cartTitles(context) => TextStyle(
 const detailText = TextStyle(
   fontSize: 12,
 );
+const headerText = TextStyle(
+    fontSize: 22, fontWeight: FontWeight.w500, color: onSurfaceTextColor);
