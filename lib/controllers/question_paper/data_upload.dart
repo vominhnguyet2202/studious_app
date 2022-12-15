@@ -20,7 +20,7 @@ class DataUploader extends GetxController {
     final fireStore = FirebaseFirestore.instance;
     final manifestContent = await DefaultAssetBundle.of(Get.context!)
         .loadString("AssetManifest.json");
-    final Map<String, dynamic> manifestMap = jsonDecode(manifestContent);
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
 
     //load json file and print path
     final paperInAssets = manifestMap.keys
@@ -48,15 +48,15 @@ class DataUploader extends GetxController {
 
       for (var questions in paper.questions!) {
         final questionPath = questionRF(
-          paperId: paper.id!,
-          questionId: questions.id!,
+          paperId: paper.id,
+          questionId: questions.id,
         );
         batch.set(questionPath, {
           "question": questions.question,
           "correct_answer": questions.correctAnswer
         });
 
-        for (var answer in questions.answers!) {
+        for (var answer in questions.answers) {
           batch.set(questionPath.collection("answers").doc(answer.identifier),
               {"identifier": answer.identifier, "answer": answer.answer});
         }

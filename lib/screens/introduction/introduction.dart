@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studious_app/configs/themes/app_color.dart';
-import 'package:studious_app/screens/home/home_screen.dart';
+import 'package:studious_app/widgets/circle_button.dart';
 
 class IntroductionScreen extends StatelessWidget {
   const IntroductionScreen({super.key});
@@ -36,8 +36,10 @@ class IntroductionScreen extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              InkWell(
-                onTap: () {},
+              CircleButton(
+                onTap: () {
+                  Get.offAndToNamed("/home");
+                },
                 child: const Icon(
                   Icons.arrow_forward,
                   size: 35,

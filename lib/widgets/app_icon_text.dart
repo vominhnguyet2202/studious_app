@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AppIconText extends StatelessWidget {
   final Icon icon;
@@ -11,9 +9,10 @@ class AppIconText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        icon, 
-        SizedBox(width: 4,),
-        
+        icon,
+        const SizedBox(
+          width: 4,
+        ),
       ],
     );
   }
