@@ -41,47 +41,50 @@ class AnswerCheckScreen extends GetView<QuestionsController> {
                     padding: const EdgeInsets.only(top: 20),
                     child: Column(children: [
                       Text(controller.currentQuestion.value!.question),
-                      GetBuilder<QuestionsController>(
-                          id: 'answer_review_list',
-                          builder: (context) {
-                            return ListView.separated(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: controller
-                                  .currentQuestion.value!.answers.length,
-                              itemBuilder: (context, index) {
-                                final answer = controller
-                                    .currentQuestion.value!.answers[index];
-                                final selectedAnswer = controller
-                                    .currentQuestion.value!.selectedAnswer;
-                                final correctAnswer = controller
-                                    .currentQuestion.value!.correctAnswer;
-                                final String answerText =
-                                    '${answer.identifier}. ${answer.answer}';
-                                if (correctAnswer == selectedAnswer &&
-                                    answer.identifier == selectedAnswer) {
-                                  return CorrectAnswer(answer: answerText);
-                                } else if (selectedAnswer == null) {
-                                  return NotedAnswer(answer: answerText);
-                                } else if (correctAnswer != selectedAnswer &&
-                                    answer.identifier == selectedAnswer) {
-                                  return WrongAnswer(answer: answerText);
-                                } else if (correctAnswer == answer.identifier) {
-                                  return CorrectAnswer(answer: answerText);
-                                }
-                                return AnswerCard(
-                                  answer: answerText,
-                                  onTap: () {},
-                                  isSelected: false,
-                                );
-                              },
-                              separatorBuilder: (context, index) {
-                                return const SizedBox(
-                                  height: 10,
-                                );
-                              },
-                            );
-                          })
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: GetBuilder<QuestionsController>(
+                            id: 'answer_review_list',
+                            builder: (context) {
+                              return ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller
+                                    .currentQuestion.value!.answers.length,
+                                itemBuilder: (context, index) {
+                                  final answer = controller
+                                      .currentQuestion.value!.answers[index];
+                                  final selectedAnswer = controller
+                                      .currentQuestion.value!.selectedAnswer;
+                                  final correctAnswer = controller
+                                      .currentQuestion.value!.correctAnswer;
+                                  final String answerText =
+                                      '${answer.identifier}. ${answer.answer}';
+                                  if (correctAnswer == selectedAnswer &&
+                                      answer.identifier == selectedAnswer) {
+                                    return CorrectAnswer(answer: answerText);
+                                  } else if (selectedAnswer == null) {
+                                    return NotedAnswer(answer: answerText);
+                                  } else if (correctAnswer != selectedAnswer &&
+                                      answer.identifier == selectedAnswer) {
+                                    return WrongAnswer(answer: answerText);
+                                  } else if (correctAnswer == answer.identifier) {
+                                    return CorrectAnswer(answer: answerText);
+                                  }
+                                  return AnswerCard(
+                                    answer: answerText,
+                                    onTap: () {},
+                                    isSelected: false,
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return const SizedBox(
+                                    height: 10,
+                                  );
+                                },
+                              );
+                            }),
+                      )
                     ]),
                   )))
                 ],

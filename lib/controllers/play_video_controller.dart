@@ -11,7 +11,8 @@ class PlayVideoController extends GetxController {
   int _curentIndex = 0;
   @override
   void onInit() {
-    playVideo();
+    playVideo(init: true);
+    initPlayer();
     super.onInit();
   }
 
@@ -25,6 +26,26 @@ class PlayVideoController extends GetxController {
     _controller.dispose();
     chewieController!.dispose();
     super.onClose();
+  }
+
+  Future<void> initPlayer() async {
+    _controller = VideoPlayerController.network(
+        " https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4");
+    await Future.wait([_controller.initialize()]);
+    chewieController = ChewieController(
+        videoPlayerController: _controller,
+        autoPlay: true,
+        looping: true,
+        materialProgressColors: ChewieProgressColors(
+            playedColor: Colors.red,
+            handleColor: Colors.cyan,
+            backgroundColor: Colors.yellowAccent,
+            bufferedColor: Colors.lightGreen),
+        placeholder: Container(
+          color: Colors.greenAccent,
+        ),
+        autoInitialize: true);
+    update();
   }
 
   Future<void> playVideo({int index = 0, bool init = false}) async {

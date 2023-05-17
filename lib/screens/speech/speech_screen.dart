@@ -4,34 +4,37 @@ import 'package:get/get.dart';
 import 'package:studious_app/configs/themes/app_color.dart';
 
 import '../../controllers/speech_controller.dart';
+import '../../widgets/questions/custom_app_bar.dart';
 
 class SpeechView extends GetView<SpeechController> {
   const SpeechView({super.key});
   static const String routeName = '/speech';
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: colorLightRed,
-        appBar: AppBar(
-          backgroundColor: customBlackColor,
-          title: const Text("Speech Text"),
-        ),
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(gradient: mainGradient()),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: const CustomAppBar(title: "Speech Text"),
         body: SingleChildScrollView(
           reverse: true,
-          child: Container(
-              padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-              child: Column(
-                children: [
-                  Obx(() => Text(
-                        controller.speechText.value,
-                        style: const TextStyle(fontSize: 30),
-                      ))
-                ],
-              )),
+          child: Column(
+            children: [
+              Obx(() => Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      controller.speechText.value,
+                      style:
+                          const TextStyle(fontSize: 18, color: Colors.black54),
+                    ),
+                  )),
+            ],
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: AvatarGlow(
             animate: controller.isListening.value,
-            glowColor: Theme.of(context).primaryColor,
+            glowColor: Colors.amber.withOpacity(0.5),
             endRadius: 75.0,
             duration: const Duration(milliseconds: 2000),
             repeatPauseDuration: const Duration(milliseconds: 100),
@@ -41,7 +44,9 @@ class SpeechView extends GetView<SpeechController> {
                 controller.listen();
               },
               child: Icon(
-                  controller.isListening.value ? Icons.mic : Icons.mic_none),
+                  controller.isListening.value ? Icons.mic_off : Icons.mic),
             )),
-      );
+      ),
+    );
+  }
 }

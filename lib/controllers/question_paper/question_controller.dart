@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:studious_app/controllers/auth_controller.dart';
 import 'package:studious_app/controllers/question_paper/question_paper_controller.dart';
 import 'package:studious_app/firebase_ref/loading_status.dart';
 import 'package:studious_app/firebase_ref/refrences.dart';
@@ -30,8 +29,7 @@ class QuestionsController extends GetxController {
   @override
   void onReady() {
     // allows to grab objects passed when we navigate to any view that has access to this controller (The route argument we pass in the question_controller when we navigate to the QuestionScreen)
-    final questionPaper = Get.arguments
-        as QuestionPaperModel; // We perfom a cast to cast the data
+    final questionPaper = Get.arguments as QuestionPaperModel;
     // ignore: avoid_print
     print(questionPaper.id);
     loadData(questionPaper);
@@ -53,7 +51,7 @@ class QuestionsController extends GetxController {
       questionPaper.questions = questions;
       for (Questions question in questionPaper.questions!) {
         final QuerySnapshot<Map<String, dynamic>> answerQuery =
-            await questionPaperRF // We always have to start from the root node
+            await questionPaperRF
                 .doc(questionPaper.id)
                 .collection("questions")
                 .doc(question.id)
@@ -86,10 +84,7 @@ class QuestionsController extends GetxController {
 
   void selectedAnswer(String? answer) {
     currentQuestion.value!.selectedAnswer = answer;
-    update([
-      'answers_list',
-      'answer_review_list'
-    ]); // point to which particular GetBuilder we want to update
+    update(['answers_list', 'answer_review_list']);
   }
 
   // getter in dart

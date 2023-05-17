@@ -11,11 +11,13 @@ import 'package:studious_app/screens/question/questions_screen.dart';
 import 'package:studious_app/screens/question/result_screen.dart';
 import 'package:studious_app/screens/speech/speech_screen.dart';
 import 'package:studious_app/screens/splash/splash_screen.dart';
-import 'package:studious_app/widgets/tabbar/bottom_tab_bar.dart';
+import 'package:studious_app/screens/youtube_play/video_screen.dart';
+import 'package:studious_app/screens/youtube_play/watch_video.dart';
 
 import '../controllers/question_paper/question_controller.dart';
 import '../controllers/speech_controller.dart';
 import '../screens/question/test_overview_screen.dart';
+import '../screens/speech/text_to_speech.dart';
 
 class AppRouters {
   static List<GetPage> routes() => [
@@ -23,7 +25,7 @@ class AppRouters {
         GetPage(name: "/introduction", page: () => const IntroductionScreen()),
         GetPage(
             name: "/home",
-            page: () => HomeScreen(),
+            page: () => const HomeScreen(),
             binding: BindingsBuilder(() {
               Get.put(QuestionPaperController());
               Get.put(MyZoomDrawerController());
@@ -39,20 +41,26 @@ class AppRouters {
         GetPage(
             name: AnswersReport.routeName, page: () => const AnswersReport()),
         GetPage(
-            name: TestOverviewScreen.routeName,
-            page: () => const TestOverviewScreen()),
-        GetPage(name: ChatScreen.routeName, page: () => ChatScreen()),
-        GetPage(name: "/tabbar", page: () => BottomAppBar()),
+          name: TestOverviewScreen.routeName,
+          page: () => const TestOverviewScreen(),
+          binding: BindingsBuilder(() {
+            Get.put(const TestOverviewScreen());
+          }),
+        ),
         GetPage(
           name: SpeechView.routeName,
-          page: () => const SpeechView(),
+          page: () => SpeechView(),
           binding: BindingsBuilder(() {
             Get.put(SpeechController());
           }),
         ),
-        GetPage(name: ResultScreen.routeName, page: () => const ResultScreen()),
         GetPage(
             name: AnswerCheckScreen.routeName,
-            page: () => const AnswerCheckScreen())
+            page: () => const AnswerCheckScreen()),
+        GetPage(name: ChatScreen.routeName, page: () => ChatScreen()),
+        GetPage(name: ResultScreen.routeName, page: () => const ResultScreen()),
+        GetPage(name: PlayVideo.routeName, page: () => PlayVideo()),
+        GetPage(name: WatchVideo.routeName, page: () => const WatchVideo()),
+        GetPage(name: TextPage.routeName, page: () => const TextPage()),
       ];
 }

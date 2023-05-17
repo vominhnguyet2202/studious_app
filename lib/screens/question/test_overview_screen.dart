@@ -71,17 +71,14 @@ class TestOverviewScreen extends GetView<QuestionsController> {
                           onTap: () => controller.jumbToQuestion(index));
                     }),
               ),
-              ColoredBox(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: Padding(
-                    padding: UIParamenters.mobileScreenPadding,
-                    child: MainButton(
-                      onTap: () {
-                        controller.complete();
-                      },
-                      title: "Complete",
-                    )),
-              )
+              Padding(
+                  padding: UIParamenters.mobileScreenPadding,
+                  child: MainButton(
+                    onTap: () {
+                      controller.complete();
+                    },
+                    title: "Complete",
+                  ))
             ],
           )))
         ],

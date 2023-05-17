@@ -49,7 +49,7 @@ class CorrectAnswer extends StatelessWidget {
     return Ink(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       color: correctAnswerColor.withOpacity(0.1),
-      decoration: BoxDecoration(borderRadius: UIParamenters.cardBorderRadius),
+      // decoration: BoxDecoration(borderRadius: UIParamenters.cardBorderRadius),
       child: Text(
         answer,
         style: const TextStyle(
@@ -67,7 +67,7 @@ class WrongAnswer extends StatelessWidget {
     return Ink(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       color: wrongAnswerColor.withOpacity(0.1),
-      decoration: BoxDecoration(borderRadius: UIParamenters.cardBorderRadius),
+      // decoration: BoxDecoration(borderRadius: UIParamenters.cardBorderRadius),
       child: Text(
         answer,
         style: const TextStyle(
@@ -85,7 +85,7 @@ class NotedAnswer extends StatelessWidget {
     return Ink(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       color: notAnsweredColor.withOpacity(0.1),
-      decoration: BoxDecoration(borderRadius: UIParamenters.cardBorderRadius),
+      // decoration: BoxDecoration(borderRadius: UIParamenters.cardBorderRadius),
       child: Text(
         answer,
         style: const TextStyle(

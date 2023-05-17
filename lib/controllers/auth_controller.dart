@@ -6,6 +6,8 @@ import 'package:studious_app/screens/home/home_screen.dart';
 import 'package:studious_app/screens/login/login_screen.dart';
 import 'package:studious_app/widgets/dialog/dialog_widget.dart';
 
+import '../applogger.dart';
+
 class AuthController extends GetxController {
   @override
   void onReady() {
@@ -40,6 +42,7 @@ class AuthController extends GetxController {
       }
     } on Exception catch (error) {
       print("$error");
+      // AppLogger.e(error) -->to be called so need to build this
     }
   }
 
@@ -76,13 +79,12 @@ class AuthController extends GetxController {
   }
 
   Future<void> signOut() async {
-    // AppLogger.d('Sign out');
+    AppLogger.d('Sign out');
     try {
       await _auth.signOut();
       navigateToHomePage();
     } on FirebaseAuthException catch (e) {
-      // AppLogger.e('Signout falied');
-
+      AppLogger.e('Signout falied');
     }
   }
 
@@ -90,89 +92,3 @@ class AuthController extends GetxController {
     Get.offAllNamed(HomeScreen.routeName);
   }
 }
-
-
-
-// class AuthController extends GetxController {
-//   @override
-//   void onReady() {
-//     initAuth();
-//     super.onReady();
-//   }
-
-//   late FirebaseAuth _auth;
-
-//   final _user = Rxn<User>();
-//   late Stream<User?> _authStateChanges;
-
-//   void initAuth() async {
-//     await Future.delayed(const Duration(seconds: 2));
-//     _auth = FirebaseAuth.instance;
-//     _authStateChanges = _auth.authStateChanges();
-//     _authStateChanges.listen((User? user) {
-//       // _user.value = user;
-//     });
-//     navigateIntroduction();
-//   }
-
-//   singInWithGoogle() async {
-//     final GoogleSignIn _googleSingIn = GoogleSignIn();
-//     try {
-//       GoogleSignInAccount? account = await _googleSingIn.signIn();
-//       if (account != null) {
-//         final _authAccount = await account.authentication;
-//         final _credential = GoogleAuthProvider.credential(
-//           idToken: _authAccount.idToken,
-//           accessToken: _authAccount.accessToken,
-//         );
-//         await _auth.signInWithCredential(_credential);
-//         await saveUser(account);
-//       }
-//     } catch (e) {
-//       e.printError();
-//     }
-//   }
-
-//   User? getUser() {
-//     _user.value = _auth.currentUser;
-//     return _user.value;
-//   }
-
-//   Future<void> signOut() async {
-//     // AppLogger.d('Sign out');
-//     try {
-//       await _auth.signOut();
-//       // navigateToHomePage();
-//     } on FirebaseAuthException catch (e) {
-//       // AppLogger.e('Signout falied');
-
-//     }
-//   }
-
-//   saveUser(GoogleSignInAccount account) {
-//     userRF.doc(account.email).set({
-//       "email": account.email,
-//       "name": account.displayName,
-//       "profilepic": account.photoUrl
-//     });
-//   }
-
-//   void navigateIntroduction() {
-//     Get.offAllNamed("/introduction");
-//   }
-
-//   void showLoginAlertDialog() {
-//     Get.dialog(Dialogs.questionStartDialog(onTap: () {
-//       Get.back();
-//       navigaterToLoginPage(); // chuyen ve trang login
-//     }), barrierDismissible: false);
-//   }
-
-//   void navigaterToLoginPage() {
-//     Get.toNamed(LoginScreen.routerName);
-//   }
-
-//   bool isLoggedIn() {
-//     return _auth.currentUser != null;
-//   }
-// }

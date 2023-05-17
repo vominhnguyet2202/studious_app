@@ -16,7 +16,6 @@ import '../../widgets/questions/custom_app_bar.dart';
 import 'test_overview_screen.dart';
 
 class QuestionScreen extends GetView<QuestionsController> {
-  // lets our view know about the controller
   const QuestionScreen({Key? key}) : super(key: key);
   static const String routeName = "/questionsscreen";
   @override

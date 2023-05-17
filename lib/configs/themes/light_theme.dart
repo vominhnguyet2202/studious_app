@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:studious_app/configs/themes/sub_theme_data_mixin.dart';
 
-const Color primaryLightColorLight = Color(0xff3ac3cb);
-const Color primaryColorLight = Color(0xfff85187);
-const Color mainTextColor = Color.fromARGB(255, 40, 40, 40);
-const Color cardColor = Color.fromARGB(255, 254, 254, 255);
+const Color primaryLightColorLight = Color(0xff9999ff);
+const Color primaryColorLight = Color.fromARGB(255, 239, 128, 185);
+const Color mainTextColor = Color.fromARGB(255, 40, 20, 20);
+const Color cardColor = Color.fromARGB(255, 255, 254, 255);
 
 class LightTheme with SubThemeData {
   buildLightTheme() {

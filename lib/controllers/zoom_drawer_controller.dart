@@ -20,7 +20,10 @@ class MyZoomDrawerController extends GetxController {
     update();
   }
 
-  void signOut() {}
+  void signOut() {
+    Get.find<AuthController>().signOut();
+  }
+
   void signIn() {}
   void website() {}
   void email() {
@@ -29,12 +32,8 @@ class MyZoomDrawerController extends GetxController {
     _launch(emailLaunch.toString());
   }
 
-  void logout() {
-    Get.find<AuthController>().signOut();
-  }
-
   void facebook() {
-    launch("https://facebook.com");
+    launch("https://www.facebook.com");
   }
 
   Future<void> _launch(String url) async {

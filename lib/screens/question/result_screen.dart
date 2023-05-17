@@ -21,16 +21,16 @@ class ResultScreen extends GetView<QuestionsController> {
     Color textColor =
         Get.isDarkMode ? Colors.white : Theme.of(context).primaryColor;
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CustomAppBar(
-          leading: const SizedBox(height: 80),
-          title: controller.correctAnsweredQuestions,
-        ),
-        body: BackgroundDecoration(
-          child: Column(
-            children: [
-              Expanded(
-                  child: ContentArea(
+      extendBodyBehindAppBar: true,
+      body: BackgroundDecoration(
+        child: Column(
+          children: [
+            CustomAppBar(
+              leading: const SizedBox(height: 80),
+              title: controller.correctAnsweredQuestions,
+            ),
+            Expanded(
+              child: ContentArea(
                 child: Column(
                   children: [
                     SvgPicture.asset("assets/images/bulb.svg"),
@@ -41,10 +41,10 @@ class ResultScreen extends GetView<QuestionsController> {
                         style: headerText.copyWith(color: textColor),
                       ),
                     ),
-                    Text(
-                      "You have ${controller.points} point",
-                      style: TextStyle(color: textColor),
-                    ),
+                    // Text(
+                    //   "You have ${controller.points} point",
+                    //   style: TextStyle(color: textColor),
+                    // ),
                     const SizedBox(
                       height: 25,
                     ),
@@ -55,73 +55,74 @@ class ResultScreen extends GetView<QuestionsController> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Expanded(
-                        child: GridView.builder(
-                            shrinkWrap: true,
-                            itemCount: controller.allQuestions.length,
-                            physics: const BouncingScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: Get.width ~/ 75,
-                                    childAspectRatio: 1,
-                                    crossAxisSpacing: 8,
-                                    mainAxisSpacing: 8),
-                            itemBuilder: (context, index) {
-                              final _question = controller.allQuestions[index];
-                              AnswerStatus status = AnswerStatus.notanswered;
-                              final selectAnswer = _question.selectedAnswer;
-                              final correctAnswer = _question.correctAnswer;
-                              if (selectAnswer == correctAnswer) {
-                                status = AnswerStatus.correct;
-                              } else if (_question.selectedAnswer == null) {
-                                status = AnswerStatus.wrong;
-                              } else {
-                                status = AnswerStatus.wrong;
-                              }
-                              return QuestionNumberCard(
-                                  index: index + 1,
-                                  status: status,
-                                  onTap: () {
-                                    controller.jumbToQuestion(index,
-                                        isGoBack: false);
-                                    Get.toNamed(AnswerCheckScreen.routeName);
-                                  });
-                            }))
+                    GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.allQuestions.length,
+                        physics: const BouncingScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: Get.width ~/ 75,
+                            childAspectRatio: 1,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8),
+                        itemBuilder: (context, index) {
+                          final _question = controller.allQuestions[index];
+                          AnswerStatus status = AnswerStatus.notanswered;
+                          final selectAnswer = _question.selectedAnswer;
+                          final correctAnswer = _question.correctAnswer;
+                          if (selectAnswer == correctAnswer) {
+                            status = AnswerStatus.correct;
+                          } else if (_question.selectedAnswer == null) {
+                            status = AnswerStatus.wrong;
+                          } else {
+                            status = AnswerStatus.wrong;
+                          }
+                          return QuestionNumberCard(
+                              index: index + 1,
+                              status: status,
+                              onTap: () {
+                                controller.jumbToQuestion(index,
+                                    isGoBack: false);
+                                Get.toNamed(AnswerCheckScreen.routeName);
+                              });
+                        })
                   ],
                 ),
-              )),
-              ColoredBox(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: Padding(
-                  padding: UIParamenters.mobileScreenPadding,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: MainButton(
-                          onTap: () {
-                            controller.tryAgain();
-                          },
-                          color: Colors.blueAccent,
-                          title: "Try again!",
-                        ),
+              ),
+            ),
+            ColoredBox(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Padding(
+                padding: UIParamenters.mobileScreenPadding,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: MainButton(
+                        onTap: () {
+                          controller.tryAgain();
+                        },
+                        color: Colors.pinkAccent,
+                        title: "Try again!",
                       ),
-                      const SizedBox(
-                        width: 5,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: MainButton(
+                        onTap: () {
+                          controller.saveTestResult();
+                          // Get.toNamed('/home');
+                        },
+                        title: "Go home",
                       ),
-                      Expanded(
-                        child: MainButton(
-                          onTap: () {
-                            controller.saveTestResult();
-                          },
-                          title: "Go home",
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

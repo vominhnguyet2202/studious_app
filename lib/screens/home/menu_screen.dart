@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:studious_app/configs/themes/app_color.dart';
 import 'package:studious_app/configs/themes/ui_paraments.dart';
 import 'package:studious_app/controllers/zoom_drawer_controller.dart';
-import 'package:studious_app/screens/chat/chat_screen.dart';
+import 'package:studious_app/screens/youtube_play/video_screen.dart';
+import 'package:studious_app/screens/youtube_play/watch_video.dart';
 
 class MenuScreen extends GetView<MyZoomDrawerController> {
   const MenuScreen({super.key});
@@ -31,7 +32,7 @@ class MenuScreen extends GetView<MyZoomDrawerController> {
                   )),
               Padding(
                 padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.3),
+                    right: MediaQuery.of(context).size.width * 0.5),
                 child: Column(
                   children: [
                     Obx(() => controller.user.value == null
@@ -43,21 +44,33 @@ class MenuScreen extends GetView<MyZoomDrawerController> {
                                 fontSize: 18,
                                 color: onSurfaceTextColor),
                           )),
-                    _DrawerButton(
-                      icon: Icons.facebook,
-                      label: "FaceBook",
-                      onPressed: () => controller.facebook(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Column(
+                        children: [
+                          _DrawerButton(
+                            icon: Icons.facebook,
+                            label: "FaceBook",
+                            onPressed: () => controller.facebook(),
+                          ),
+                          _DrawerButton(
+                            icon: Icons.email,
+                            label: "Email",
+                            onPressed: () => controller.email(),
+                          ),
+                          _DrawerButton(
+                            icon: Icons.video_collection,
+                            label: "Video",
+                            onPressed: () => Get.toNamed(WatchVideo.routeName),
+                          ),
+                          _DrawerButton(
+                            icon: Icons.logout,
+                            label: "Logout",
+                            onPressed: () => controller.signOut(),
+                          )
+                        ],
+                      ),
                     ),
-                    _DrawerButton(
-                      icon: Icons.email,
-                      label: "Email",
-                      onPressed: () => controller.email(),
-                    ),
-                    _DrawerButton(
-                      icon: Icons.chat_bubble_outline,
-                      label: "Chat with me!",
-                      onPressed: () => Get.toNamed(ChatScreen.routeName),
-                    )
                   ],
                 ),
               )
@@ -69,14 +82,17 @@ class MenuScreen extends GetView<MyZoomDrawerController> {
 
 class _DrawerButton extends StatelessWidget {
   const _DrawerButton(
-      {super.key, required this.icon, required this.label, this.onPressed});
+      {super.key,
+      required this.icon,
+      required this.label,
+      required this.onPressed});
   final IconData icon;
   final String label;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed: () => onPressed,
+      onPressed: onPressed,
       icon: Icon(
         icon,
         size: 15,

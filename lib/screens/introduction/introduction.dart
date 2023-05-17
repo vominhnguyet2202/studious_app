@@ -18,7 +18,7 @@ class IntroductionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(
-                Icons.star,
+                Icons.solar_power_outlined,
                 size: 65,
               ),
               const SizedBox(

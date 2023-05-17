@@ -13,9 +13,3 @@ DocumentReference questionRF({
   required String questionId,
 }) =>
     questionPaperRF.doc(paperId).collection("questions").doc(questionId);
-// final linkRF = fireStore.collection("linkVideos");
-// DocumentReference linkVideoRF({
-//   required String idLink,
-//   required String link,
-// }) =>
-//     linkRF.doc(idLink).collection("1").doc(link);

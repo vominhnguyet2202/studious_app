@@ -10,6 +10,8 @@ import 'package:studious_app/controllers/zoom_drawer_controller.dart';
 import 'package:studious_app/screens/home/menu_screen.dart';
 import 'package:studious_app/screens/home/question_card.dart';
 import 'package:studious_app/screens/speech/speech_screen.dart';
+import 'package:studious_app/screens/speech/text_to_speech.dart';
+import 'package:studious_app/screens/youtube_play/video_screen.dart';
 import 'package:studious_app/widgets/circle_button.dart';
 import 'package:studious_app/widgets/content_arer.dart';
 
@@ -56,15 +58,23 @@ class HomeScreen extends GetView<MyZoomDrawerController> {
                           children: [
                             const Icon(
                               AppIcons.straight,
+                              size: 28,
+                            ),
+                            const SizedBox(
+                              width: 5,
                             ),
                             Text(
-                              "Hello Friend",
+                              "Hello Friend, Let's Speech",
                               style: detailText.copyWith(
-                                  color: onSurfaceTextColor),
+                                  color: onSurfaceTextColor, fontSize: 15),
                             ),
                             CircleButton(
-                              child: const Icon(Icons.contact_support_outlined),
-                              onTap: () => Get.toNamed(SpeechView.routeName),
+                              child: const Icon(
+                                Icons.mic,
+                                size: 30,
+                              ),
+                              onTap: () => Get.toNamed(TextPage.routeName),
+                              //(SpeechView.routeName),
                             )
                           ],
                         ),
@@ -97,7 +107,7 @@ class HomeScreen extends GetView<MyZoomDrawerController> {
                     ),
                   ),
                 ),
-                const BottomAppBar()
+                // const BottomAppBar()
               ],
             ),
           ),
